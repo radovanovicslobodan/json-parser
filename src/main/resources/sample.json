@@ -1,0 +1,7 @@
+{
+  "username": "$RANDOM_NAME",
+  "country": "$COUNTRY",
+  "date": "$TODAY",
+  "email": "johndoe@john.com",
+  "secondemail": "$EMAIL"
+}
