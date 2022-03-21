@@ -10,15 +10,16 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
+
         JsonReader getLocalJsonFile = new JsonReader(new FileReader("src/main/resources/sample.json"));
 
-        Type mapTokenType = new TypeToken<Map<String, String>>() {
+        Type mapTokenType = new TypeToken<Map<String, Object>>() {
         }.getType();
 
-        Map<String, String> jsonMap = new Gson().fromJson(getLocalJsonFile, mapTokenType);
+        Map<String, Object> jsonMap = new Gson().fromJson(getLocalJsonFile, mapTokenType);
 
-        Map<String,String> newMap = JsonParser.parseMap(jsonMap);
+        Map<String, Object> parsedMap = JsonParser.parseMap(jsonMap);
 
-        System.out.println(newMap);
+        System.out.println(parsedMap);
     }
 }

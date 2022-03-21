@@ -6,11 +6,12 @@ import java.util.Map;
 
 public class JsonParser {
 
-    public static Map<String, String> parseMap(Map<String, String> map) {
-
-        for (var entry : map.entrySet()) {
-            if (entry.getValue().startsWith("$")) {
-                map.replace(entry.getKey(), replaceValue(entry.getValue()));
+    public static Map<String, Object> parseMap(Map<String, Object> map) {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            if (entry.getValue() instanceof Map) {
+                parseMap((Map<String, Object>) entry.getValue());
+            } else if (entry.getValue().toString().startsWith("$")) {
+                map.replace(entry.getKey(), replaceValue((String) entry.getValue()));
             }
         }
         return map;
@@ -40,7 +41,7 @@ public class JsonParser {
                 break;
 
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Invalid command in JSON file.");
         }
         return newValue;
     }
