@@ -39,8 +39,18 @@ public class JsonParser {
                 newValue = todayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 break;
 
+            case "$WEEKBEFORE":
+                LocalDate weekBeforeDate = LocalDate.now().minusWeeks(1);
+                newValue = weekBeforeDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                break;
+
+            case "$WEEKAFTER":
+                LocalDate weekAfterDate = LocalDate.now().plusWeeks(1);
+                newValue = weekAfterDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                break;
+
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Invalid command in JSON file.");
         }
         return newValue;
     }

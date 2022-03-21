@@ -3,5 +3,7 @@
   "country": "$COUNTRY",
   "date": "$TODAY",
   "email": "johndoe@john.com",
-  "secondemail": "$EMAIL"
+  "secondemail": "$EMAIL",
+  "lastweek": "$WEEKBEFORE",
+  "nextweek": "$WEEKAFTER"
 }
