@@ -1,25 +1,14 @@
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.lang.reflect.Type;
-import java.util.Map;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
-        JsonReader getLocalJsonFile = new JsonReader(new FileReader("src/main/resources/sample.json"));
-
-        Type mapTokenType = new TypeToken<Map<String, Object>>() {
-        }.getType();
-
-        Map<String, Object> jsonMap = new Gson().fromJson(getLocalJsonFile, mapTokenType);
-
-        Map<String, Object> parsedMap = JsonParser.parseMap(jsonMap);
-
-        System.out.println(parsedMap);
+        String jsonFile = Files.readString(Path.of("src/main/resources/sample.json"), StandardCharsets.US_ASCII);
+        String parsedJsonFile = JsonParser.parseJson(jsonFile);
+        System.out.println(parsedJsonFile);
     }
 }

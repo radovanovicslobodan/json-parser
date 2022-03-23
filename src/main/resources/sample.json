@@ -1,13 +1,13 @@
 {
   "name": {
-    "firstname": "$RANDOM_NAME",
+    "firstname": "%RANDOM_NAME%",
     "lastname": "Doe",
     "parent": {
-      "name": "$RANDOM_NAME",
-      "country": "$COUNTRY"
+      "name": "%RANDOM_NAME%",
+      "country": "%COUNTRY%"
     }
   },
   "birthplace": "Dublin",
-  "email": "$EMAIL",
-  "date": "$TODAY"
+  "email": "%EMAIL%",
+  "date": "%TODAY%"
 }
