@@ -1,7 +1,10 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.Assertions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ro.skyah.comparator.CompareMode;
 import ro.skyah.comparator.DefaultJsonComparator;
 import ro.skyah.comparator.JsonComparator;
@@ -16,6 +19,8 @@ import java.util.HashSet;
 import static ro.skyah.comparator.JSONCompare.prettyPrint;
 
 public class CustomJSONCompare {
+
+    private static Logger logger = LoggerFactory.getLogger(CustomJSONCompare.class);
 
     private static final ObjectMapper MAPPER;
 
@@ -35,7 +40,7 @@ public class CustomJSONCompare {
 
         try {
             jsonNode = MAPPER.readTree(json);
-        } catch (IOException var3) {
+        } catch (IOException e) {
             Assertions.fail(String.format("Not a JSON:\n%s", MessageUtil.cropL(json)));
         }
 
@@ -52,7 +57,11 @@ public class CustomJSONCompare {
                 defaultMessage = defaultMessage + "\n\nHint: By default, json matching uses regular expressions.\nIf expected json contains unintentional regexes, then quote them between \\Q and \\E delimiters or use a custom comparator.\n";
             }
 
-//            Assertions.fail(message == null ? defaultMessage : defaultMessage + "\n" + message);
+            if (message == null) {
+                logger.error(defaultMessage);
+            } else {
+                logger.error(defaultMessage + "\n" + message);
+            }
             return false;
         }
 

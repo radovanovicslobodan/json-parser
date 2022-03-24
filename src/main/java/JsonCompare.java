@@ -1,5 +1,3 @@
-import ro.skyah.comparator.JSONCompare;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,7 +15,6 @@ public class JsonCompare {
 
         boolean res = CustomJSONCompare.assertEquals(wrappedRequest, response);
         System.out.println("Result: " + res);
-        System.out.println("JSON files are equal.");
     }
 
     private static String wrapRequest( String innerKey, String request){
