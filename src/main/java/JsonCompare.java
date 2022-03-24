@@ -15,7 +15,8 @@ public class JsonCompare {
 
         String wrappedRequest = wrapRequest("booking",request);
 
-        CustomJSONCompare.assertEquals(wrappedRequest, dummy);
+        boolean res = CustomJSONCompare.assertEquals(wrappedRequest, response);
+        System.out.println("Result: " + res);
         System.out.println("JSON files are equal.");
     }
 
