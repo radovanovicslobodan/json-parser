@@ -13,7 +13,14 @@ public class JsonCompare {
         String response = Files.readString(Path.of("src/main/resources/response.json"), StandardCharsets.US_ASCII);
         String dummy = Files.readString(Path.of("src/main/resources/dummy.json"), StandardCharsets.US_ASCII);
 
-        JSONCompare.assertEquals(request, response);
+        String wrappedRequest = wrapRequest("booking",request);
+
+        CustomJSONCompare.assertEquals(wrappedRequest, dummy);
         System.out.println("JSON files are equal.");
+    }
+
+    private static String wrapRequest( String innerKey, String request){
+        String newValue = String.format("{\"%s\":%s}", innerKey,request);
+        return newValue;
     }
 }

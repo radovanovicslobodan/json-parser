@@ -29,7 +29,6 @@
             <artifactId>json-compare</artifactId>
             <version>2.41</version>
         </dependency>
-
     </dependencies>
 
 </project>
